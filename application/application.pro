@@ -55,4 +55,5 @@ RESOURCES += \
     resources.qrc
 
 DISTFILES += \
-    com.vicr123.thereel.desktop
+    com.vicr123.thereel.desktop \
+    defaults.conf
