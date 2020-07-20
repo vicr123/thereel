@@ -130,10 +130,12 @@ void MainWindow::on_actionOpen_triggered() {
     dialog->setFileMode(QFileDialog::ExistingFiles);
     dialog->setNameFilters({tr("MPEG-4 Video (*.mp4)"), tr("AVI Video (*.avi)"), tr("Matroska Video (*.mkv)"), tr("Ogg Vorbis Video (*.ogv)")});
     connect(dialog, &QFileDialog::filesSelected, this, [ = ](QStringList files) {
+        d->playlist->clear();
         d->playlist->addMedia(QMediaContent(QUrl::fromLocalFile(files.first())));
         d->player->play();
     });
     connect(dialog, &QFileDialog::urlsSelected, this, [ = ](QList<QUrl> urls) {
+        d->playlist->clear();
         d->playlist->addMedia(QMediaContent(urls.first()));
         d->player->play();
     });

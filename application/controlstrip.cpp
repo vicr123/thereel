@@ -78,6 +78,7 @@ void ControlStrip::updateState() {
 }
 
 void ControlStrip::updateSlider() {
+    QSignalBlocker blocker(ui->slider);
     ui->slider->setMaximum(d->player->duration());
     ui->slider->setValue(d->player->position());
     ui->totalLabel->setText(msToString(d->player->duration()));
