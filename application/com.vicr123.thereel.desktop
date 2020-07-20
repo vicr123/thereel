@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=theReel
+GenericName=Video Player
+GenericName[vi]=Bộ xem phim
+Exec=thereel
+Icon=thereel
+Categories=AudioVideo;Video;Player;
+Keywords=movie;video;play;
