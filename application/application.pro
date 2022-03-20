@@ -7,7 +7,7 @@ CONFIG += c++11
 TARGET = thereel
 
 # Include the-libs build tools
-include(/usr/share/the-libs/pri/buildmaster.pri)
+#include(/usr/share/the-libs/pri/buildmaster.pri)
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

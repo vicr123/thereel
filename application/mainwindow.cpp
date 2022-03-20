@@ -21,7 +21,7 @@
 #include "ui_mainwindow.h"
 
 #include <QMediaPlayer>
-#include <QMediaPlaylist>
+//#include <QMediaPlaylist>
 #include <QMenu>
 #include <QTimer>
 #include <QFileDialog>
@@ -33,7 +33,7 @@
 
 struct MainWindowPrivate {
     tCsdTools csd;
-    QMediaPlaylist* playlist;
+//    QMediaPlaylist* playlist;
     QMediaPlayer* player;
 
     ControlStrip* strip;
@@ -109,11 +109,11 @@ MainWindow::MainWindow(QWidget* parent)
     ui->topWidget->raise();
 
     d->player = new QMediaPlayer(this);
-    d->playlist = new QMediaPlaylist(this);
-    d->player->setPlaylist(d->playlist);
+//    d->playlist = new QMediaPlaylist(this);
+//    d->player->setPlaylist(d->playlist);
     d->player->setVideoOutput(ui->videoWidget);
 
-    connect(d->player, &QMediaPlayer::videoAvailableChanged, this, &MainWindow::updateVideoAvailable);
+//    connect(d->player, &QMediaPlayer::videoAvailableChanged, this, &MainWindow::updateVideoAvailable);
     updateVideoAvailable();
 
     d->strip->setMediaPlayer(d->player);
@@ -130,13 +130,13 @@ void MainWindow::on_actionOpen_triggered() {
     dialog->setFileMode(QFileDialog::ExistingFiles);
     dialog->setNameFilters({tr("MPEG-4 Video (*.mp4)"), tr("AVI Video (*.avi)"), tr("Matroska Video (*.mkv)"), tr("Ogg Vorbis Video (*.ogv)")});
     connect(dialog, &QFileDialog::filesSelected, this, [ = ](QStringList files) {
-        d->playlist->clear();
-        d->playlist->addMedia(QMediaContent(QUrl::fromLocalFile(files.first())));
+//        d->playlist->clear();
+//        d->playlist->addMedia(QMediaContent(QUrl::fromLocalFile(files.first())));
         d->player->play();
     });
     connect(dialog, &QFileDialog::urlsSelected, this, [ = ](QList<QUrl> urls) {
-        d->playlist->clear();
-        d->playlist->addMedia(QMediaContent(urls.first()));
+//        d->playlist->clear();
+//        d->playlist->addMedia(QMediaContent(urls.first()));
         d->player->play();
     });
     connect(dialog, &QFileDialog::finished, dialog, &QFileDialog::deleteLater);
@@ -179,7 +179,7 @@ void MainWindow::updateUiPosition() {
 }
 
 void MainWindow::updateVideoAvailable() {
-    ui->videoStack->setCurrentWidget(d->player->isVideoAvailable() ? ui->videoAvailablePage : ui->videoUnavailablePage);
+//    ui->videoStack->setCurrentWidget(d->player->isVideoAvailable() ? ui->videoAvailablePage : ui->videoUnavailablePage);
 }
 
 void MainWindow::on_actionFileBug_triggered() {

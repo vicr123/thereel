@@ -41,7 +41,7 @@ ControlStrip::~ControlStrip() {
 void ControlStrip::setMediaPlayer(QMediaPlayer* player) {
     d->player = player;
 
-    connect(player, &QMediaPlayer::stateChanged, this, &ControlStrip::updateState);
+    connect(player, &QMediaPlayer::playbackStateChanged, this, &ControlStrip::updateState);
     updateState();
 
     connect(player, &QMediaPlayer::positionChanged, this, &ControlStrip::updateSlider);
@@ -54,7 +54,7 @@ void ControlStrip::setFullScreen(bool isFullScreen) {
 }
 
 void ControlStrip::on_playPauseButton_clicked() {
-    switch (d->player->state()) {
+    switch (d->player->playbackState()) {
         case QMediaPlayer::StoppedState:
         case QMediaPlayer::PausedState:
             d->player->play();
@@ -66,7 +66,7 @@ void ControlStrip::on_playPauseButton_clicked() {
 }
 
 void ControlStrip::updateState() {
-    switch (d->player->state()) {
+    switch (d->player->playbackState()) {
         case QMediaPlayer::StoppedState:
         case QMediaPlayer::PausedState:
             ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
