@@ -147,9 +147,14 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QVideoWidget" name="videoWidget" native="true">
-              <property name="autoFillBackground">
-               <bool>true</bool>
+             <widget class="QQuickWidget" name="videoQmlWidget">
+              <property name="resizeMode">
+               <enum>QQuickWidget::SizeRootObjectToView</enum>
+              </property>
+              <property name="source">
+               <url>
+                <string>qrc:/qml/VideoForm.qml</string>
+               </url>
               </property>
              </widget>
             </item>
@@ -158,7 +163,7 @@
           <widget class="QWidget" name="videoUnavailablePage">
            <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="idleLabel">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -166,9 +171,6 @@
                <font>
                 <pointsize>60</pointsize>
                </font>
-              </property>
-              <property name="text">
-               <string>&lt;span style=&quot; vertical-align:sub;&quot;&gt;z&lt;/span&gt;z&lt;span style=&quot; vertical-align:super;&quot;&gt;z&lt;/span&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -187,11 +189,17 @@
    </layout>
   </widget>
   <action name="actionFileBug">
+   <property name="icon">
+    <iconset theme="tools-report-bug"/>
+   </property>
    <property name="text">
     <string>File Bug</string>
    </property>
   </action>
   <action name="actionSources">
+   <property name="icon">
+    <iconset theme="commit"/>
+   </property>
    <property name="text">
     <string>Sources</string>
    </property>
@@ -232,6 +240,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>QQuickWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">QtQuickWidgets/QQuickWidget</header>
+  </customwidget>
+  <customwidget>
    <class>tStackedWidget</class>
    <extends>QStackedWidget</extends>
    <header location="global">tstackedwidget.h</header>
@@ -239,12 +252,6 @@
    <slots>
     <signal>switchingFrame(int)</signal>
    </slots>
-  </customwidget>
-  <customwidget>
-   <class>QVideoWidget</class>
-   <extends>QWidget</extends>
-   <header location="global">qvideowidget.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

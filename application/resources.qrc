@@ -2,5 +2,9 @@
     <qresource prefix="/">
         <file>icons/aboutsplash.svg</file>
         <file>icons/thereel.svg</file>
+        <file>icons/sleeping.svg</file>
+    </qresource>
+    <qresource prefix="/qml">
+        <file>VideoForm.qml</file>
     </qresource>
 </RCC>

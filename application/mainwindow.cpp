@@ -29,7 +29,10 @@
 #include <tcsdtools.h>
 #include <tvariantanimation.h>
 #include <QDesktopServices>
+#include <QQmlContext>
+#include <QMediaMetaData>
 #include <taboutdialog.h>
+#include <math.h>
 
 struct MainWindowPrivate {
     tCsdTools csd;
@@ -50,7 +53,6 @@ MainWindow::MainWindow(QWidget* parent)
 
     this->setMouseTracking(true);
     ui->centralwidget->setMouseTracking(true);
-    ui->videoWidget->setMouseTracking(true);
 
     d = new MainWindowPrivate();
     d->csd.installMoveAction(ui->topWidget);
@@ -111,10 +113,16 @@ MainWindow::MainWindow(QWidget* parent)
     d->player = new QMediaPlayer(this);
     d->playlist = new QMediaPlaylist(this);
     d->player->setPlaylist(d->playlist);
-    d->player->setVideoOutput(ui->videoWidget);
+
+    QQmlContext* qml = ui->videoQmlWidget->rootContext();
+    qml->setContextProperty("sourceVideo", this);
 
     connect(d->player, &QMediaPlayer::videoAvailableChanged, this, &MainWindow::updateVideoAvailable);
+    connect(d->player, QOverload<>::of(&QMediaPlayer::metaDataChanged), this, &MainWindow::updateVideoGeometry);
     updateVideoAvailable();
+
+    QIcon icon(":/icons/sleeping.svg");
+    ui->idleLabel->setPixmap(icon.pixmap(SC_DPI_T(QSize(128, 128), QSize)));
 
     d->strip->setMediaPlayer(d->player);
 }
@@ -122,6 +130,10 @@ MainWindow::MainWindow(QWidget* parent)
 MainWindow::~MainWindow() {
     delete d;
     delete ui;
+}
+
+QMediaObject* MainWindow::mediaObject() const {
+    return d->player;
 }
 
 void MainWindow::on_actionOpen_triggered() {
@@ -145,6 +157,7 @@ void MainWindow::on_actionOpen_triggered() {
 
 void MainWindow::resizeEvent(QResizeEvent* event) {
     updateUiPosition();
+    updateVideoGeometry();
     d->strip->setFullScreen(this->isFullScreen());
 }
 
@@ -180,6 +193,13 @@ void MainWindow::updateUiPosition() {
 
 void MainWindow::updateVideoAvailable() {
     ui->videoStack->setCurrentWidget(d->player->isVideoAvailable() ? ui->videoAvailablePage : ui->videoUnavailablePage);
+}
+
+void MainWindow::updateVideoGeometry() {
+    QSize res = d->player->metaData(QMediaMetaData::Resolution).toSize();
+    QSize scaled = res.scaled(ui->videoQmlWidget->size(), Qt::KeepAspectRatio);
+    ui->videoQmlWidget->rootContext()->setContextProperty("videoWidth", scaled.width());
+    ui->videoQmlWidget->rootContext()->setContextProperty("videoHeight", scaled.height());
 }
 
 void MainWindow::on_actionFileBug_triggered() {

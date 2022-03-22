@@ -21,6 +21,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMediaObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -31,10 +32,13 @@ QT_END_NAMESPACE
 struct MainWindowPrivate;
 class MainWindow : public QMainWindow {
         Q_OBJECT
+        Q_PROPERTY(QMediaObject* mediaObject READ mediaObject NOTIFY mediaObjectChanged)
 
     public:
         MainWindow(QWidget* parent = nullptr);
         ~MainWindow();
+
+        QMediaObject* mediaObject() const;
 
     private slots:
         void on_actionOpen_triggered();
@@ -47,6 +51,9 @@ class MainWindow : public QMainWindow {
 
         void on_actionExit_triggered();
 
+    signals:
+        void mediaObjectChanged();
+
     private:
         Ui::MainWindow* ui;
         MainWindowPrivate* d;
@@ -58,5 +65,6 @@ class MainWindow : public QMainWindow {
         void hideUi();
         void updateUiPosition();
         void updateVideoAvailable();
+        void updateVideoGeometry();
 };
 #endif // MAINWINDOW_H

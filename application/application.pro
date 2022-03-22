@@ -1,4 +1,4 @@
-QT       += core gui thelib multimediawidgets
+QT       += core gui thelib multimediawidgets quickwidgets
 SHARE_APP_NAME = thereel
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -55,5 +55,6 @@ RESOURCES += \
     resources.qrc
 
 DISTFILES += \
+    VideoForm.qml \
     com.vicr123.thereel.desktop \
     defaults.conf
