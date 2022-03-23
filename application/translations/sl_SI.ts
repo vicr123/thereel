@@ -17,6 +17,31 @@
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../mainwindow.cpp" line="68"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="131"/>
+        <source>MPEG-4 Video (*.mp4)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="131"/>
+        <source>AVI Video (*.avi)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="131"/>
+        <source>Matroska Video (*.mkv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="131"/>
+        <source>Ogg Vorbis Video (*.ogv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>theReel</source>
         <translation type="unfinished"></translation>
@@ -59,31 +84,6 @@
     <message>
         <location filename="../mainwindow.ui" line="229"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="68"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="131"/>
-        <source>MPEG-4 Video (*.mp4)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="131"/>
-        <source>AVI Video (*.avi)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="131"/>
-        <source>Matroska Video (*.mkv)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mainwindow.cpp" line="131"/>
-        <source>Ogg Vorbis Video (*.ogv)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

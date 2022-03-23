@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22.0)
+cmake_minimum_required(VERSION 3.21.0)
 
 project(thereel VERSION 1.0.0 LANGUAGES CXX)
 
@@ -15,8 +15,8 @@ if(CMAKE_VERSION VERSION_LESS "3.7.0")
 endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets DBus Svg Network Multimedia)
-find_package(libcontemporary CONFIG REQUIRED)
-#find_library(libcontemporary REQUIRED)
+find_package(libcontemporary REQUIRED)
+#cntp_generate_translations(${CMAKE_CURRENT_LIST_DIR})
 
 add_compile_definitions(SYSTEM_LIBRARY_DIRECTORY="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
 
@@ -36,7 +36,10 @@ set(HEADERS
 
 add_executable(thereel ${SOURCES} ${HEADERS})
 set_target_properties(thereel PROPERTIES
-        MACOSX_BUNDLE TRUE)
+        MACOSX_BUNDLE TRUE
+        CNTP_DATA_SUBDIR thereel)
+
+cntp_translate(thereel)
 
 target_link_libraries(thereel Qt6::Widgets Qt6::DBus Qt6::Svg Qt6::Network Qt6::Multimedia libcontemporary)
 
